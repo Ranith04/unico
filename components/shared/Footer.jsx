@@ -2,70 +2,98 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Mail, Phone, Linkedin, Instagram } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'About Us', path: '/about' },
-    { label: 'Services', path: '/services' },
-    { label: 'Contact Us', path: '/contact' },
-  ];
-
-  const socialLinks = [
-    { icon: <Linkedin className="h-5 w-5" />, href: 'https://www.linkedin.com/company/unico-international-pvt-ltd/', label: 'LinkedIn' },
-    { icon: <Instagram className="h-5 w-5" />, href: 'https://www.instagram.com/unicointernational?utm_source=qr&igsh=MXF4aWk3ZWhleTlyag==', label: 'Instagram' },
-  ];
-
   return (
-    <footer className="bg-card text-card-foreground border-t border-border">
-      <div className="container py-12 mx-auto">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-3">
-          <div className='mx-auto'>
-            <Link href="/" className="flex items-center space-x-2 mb-4">
-              <img src="/assets/logo.avif" alt="Unico International UI Monogram Logo" className="h-20 w-80 filter invert-[5%] sepia-[7%] saturate-[2155%] hue-rotate[178deg] brightness-[95%] contrast-[90%]" />
+    <footer className="bg-gray-900 text-white py-16 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-8 mb-12">
+          {/* Company Info */}
+          <div className="md:col-span-2">
+            <Link href="/" className="flex items-center space-x-2 mb-6">
+              <span className="text-3xl font-bold text-white">Unico</span>
             </Link>
+            <p className="text-gray-300 leading-relaxed max-w-md">
+              Transforming businesses through expert solutions in software development, 
+              financial portfolio management, education, and interior design.
+            </p>
           </div>
-          <div className='mx-auto'>
-            <p className="font-semibold text-primary text-2xl mb-4">Quick Links</p>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.path} className="text-lg text-muted-foreground hover:text-primary transition-colors hover:underline hover:text-blue-400">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/" className="text-gray-300 hover:text-white transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
+                  Contact Us
+                </Link>
+              </li>
             </ul>
           </div>
 
-          <div className='mx-auto'>
-            <p className="font-semibold text-primary mb-4">Contact</p>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:support@unico-international.com" className="text-muted-foreground hover:text-primary transition-colors">support@unico-international.com</a>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:08041489479" className="text-muted-foreground hover:text-primary transition-colors">08041489479</a>
-              </li>
-            </ul>
-            <div className="mt-4 flex space-x-3">
-              {socialLinks.map((social) => (
-                <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="text-muted-foreground hover:text-primary transition-colors">
-                  {social.icon}
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-lg font-semibold mb-6 text-white">Contact</h4>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
+                <div>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Business Innovation Center<br />
+                    Tech District, Innovation Hub<br />
+                    Mumbai, Maharashtra - 400001
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-3">
+                <Mail className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                <a 
+                  href="mailto:info@unico-international.com" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  info@unico-international.com
                 </a>
-              ))}
+              </div>
+              
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                <a 
+                  href="tel:+919876543210" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  +91 98765 43210
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <Separator className="my-8 bg-border" />
-        <div className="text-center text-md text-muted-foreground">
-          <p>Copyright <span className='text-blue-400'>@{currentYear}</span> Unico. All rights reserved.</p>
+
+        {/* Divider */}
+        <div className="border-t border-gray-700 pt-8">
+          <div className="text-center">
+            <p className="text-gray-400 text-sm">
+              Copyright © {currentYear} Unico International | All Rights Reserved.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
