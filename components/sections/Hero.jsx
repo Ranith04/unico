@@ -3,84 +3,142 @@
 import { motion } from 'framer-motion'
 import { MoveUpRight, Play } from 'lucide-react'
 import { Button } from '../ui/button'
-import { useState } from 'react'
 
 export default function Hero() {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
-
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Video Background */}
+      {/* Animated Video-like Background */}
       <div className="absolute inset-0 w-full h-full">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-          onLoadedData={() => setIsVideoPlaying(true)}
-        >
-          <source src="/assets/hero-video.mp4" type="video/mp4" />
-          {/* Fallback for browsers that don't support video */}
-        </video>
-        
-        {/* Animated Background Fallback */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+        {/* Base gradient with animation */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 animate-gradient-shift">
+        </div>
+
+        {/* Moving geometric shapes */}
+        <div className="absolute inset-0">
+          {/* Large animated circles */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full opacity-5 animate-pulse-slow"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500 rounded-full opacity-5 animate-bounce-slow"></div>
+          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-500 rounded-full opacity-5 animate-ping-slow"></div>
+
+          {/* Animated tech grid pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="grid-pattern animate-grid-move"></div>
+          </div>
+
+          {/* Floating tech elements */}
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute"
+              style={{
+                width: `${Math.random() * 80 + 40}px`,
+                height: `${Math.random() * 80 + 40}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -50, 0],
+                x: [0, Math.random() * 30 - 15, 0],
+                rotate: [0, 180, 360],
+                scale: [1, 1.3, 1],
+                opacity: [0.1, 0.3, 0.1],
+              }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+                ease: "easeInOut"
+              }}
+            >
+              {/* Tech-themed shapes */}
+              {i % 4 === 0 && (
+                <div className="w-full h-full bg-blue-400 rounded-lg opacity-20 transform rotate-45"></div>
+              )}
+              {i % 4 === 1 && (
+                <div className="w-full h-full bg-green-400 rounded-full opacity-20"></div>
+              )}
+              {i % 4 === 2 && (
+                <div className="w-full h-full bg-purple-400 opacity-20" style={{clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'}}></div>
+              )}
+              {i % 4 === 3 && (
+                <div className="w-full h-full bg-yellow-400 opacity-20" style={{clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'}}></div>
+              )}
+            </motion.div>
+          ))}
+
+          {/* Animated particle system */}
+          {[...Array(30)].map((_, i) => (
+            <motion.div
+              key={`particle-${i}`}
+              className="absolute w-2 h-2 bg-white rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -100, 0],
+                opacity: [0, 0.8, 0],
+                scale: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+
+          {/* Code-like animated lines */}
           <div className="absolute inset-0">
-            {/* Animated geometric shapes */}
-            {[...Array(20)].map((_, i) => (
+            {[...Array(8)].map((_, i) => (
               <motion.div
-                key={i}
-                className="absolute bg-blue-400 opacity-10"
+                key={`line-${i}`}
+                className="absolute h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-20"
                 style={{
-                  width: `${Math.random() * 100 + 50}px`,
-                  height: `${Math.random() * 100 + 50}px`,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  borderRadius: Math.random() > 0.5 ? '50%' : '10px',
+                  top: `${(i + 1) * 12}%`,
+                  width: '100%',
                 }}
                 animate={{
-                  y: [0, -30, 0],
-                  x: [0, Math.random() * 40 - 20, 0],
-                  rotate: [0, 360],
-                  scale: [1, 1.2, 1],
+                  x: ['-100%', '100%'],
+                  opacity: [0, 0.4, 0],
                 }}
                 transition={{
-                  duration: 10 + Math.random() * 10,
+                  duration: 2.5,
                   repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "easeInOut"
-                }}
-              />
-            ))}
-            
-            {/* Floating particles */}
-            {[...Array(50)].map((_, i) => (
-              <motion.div
-                key={`particle-${i}`}
-                className="absolute w-1 h-1 bg-white rounded-full opacity-30"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -100, 0],
-                  opacity: [0.3, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: 8 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 3,
+                  delay: i * 0.3,
                   ease: "easeInOut"
                 }}
               />
             ))}
           </div>
+
+          {/* Pulsing tech nodes */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`node-${i}`}
+              className="absolute w-4 h-4 bg-blue-400 rounded-full"
+              style={{
+                left: `${20 + i * 15}%`,
+                top: `${30 + (i % 2) * 40}%`,
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.3, 0.8, 0.3],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 0.4,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
         </div>
       </div>
 
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-30"></div>
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 text-center">
@@ -174,48 +232,6 @@ export default function Hero() {
             />
           </motion.div>
         </motion.div>
-      </div>
-
-      {/* Floating elements for visual interest */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
-        <motion.div
-          animate={{ 
-            y: [0, -20, 0],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{ 
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/4 left-1/4 w-16 h-16 bg-blue-400 rounded-full opacity-10"
-        />
-        <motion.div
-          animate={{ 
-            y: [0, 15, 0],
-            rotate: [0, -5, 5, 0]
-          }}
-          transition={{ 
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-          className="absolute top-1/3 right-1/4 w-12 h-12 bg-indigo-400 rounded-full opacity-10"
-        />
-        <motion.div
-          animate={{ 
-            y: [0, -10, 0],
-            x: [0, 10, 0]
-          }}
-          transition={{ 
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-          className="absolute bottom-1/3 left-1/3 w-8 h-8 bg-purple-400 rounded-full opacity-10"
-        />
       </div>
     </section>
   )
