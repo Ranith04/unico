@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MoveUpRight, Code, TrendingUp, GraduationCap, Home, DollarSign, Laptop, BookOpen, PaintBucket } from 'lucide-react'
-import { Button } from '../ui/Button'
+import { Button } from '../ui/button'
 
 const items = ['ECHO', 'PORTFOLIO MANAGEMENT', 'EDUCATION', 'INTERIOR DESIGN'];
 
