@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
     import { Mail, Phone, Linkedin, Instagram } from 'lucide-react';
-    import { Separator } from '@/components/ui/Separator';
+    import { Separator } from '@/components/ui/separator';
 
     const Footer = () => {
       const currentYear = new Date().getFullYear();

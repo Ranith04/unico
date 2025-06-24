@@ -3,7 +3,7 @@
     import React from 'react';
     import Navbar from '@/components/shared/Navbar';
     import Footer from '@/components/shared/Footer';
-    import { Toaster } from '@/components/ui/Toaster';
+    import { Toaster } from '@/components/ui/toaster';
 
     const Layout = ({ children }) => {
       return (

@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Code, BarChart3, Palette, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
